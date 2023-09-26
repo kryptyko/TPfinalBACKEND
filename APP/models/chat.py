@@ -26,7 +26,7 @@ class Chat:
     @staticmethod
     def get_user_servers(user_id):
         query = "SELECT * FROM usuarios_servidores WHERE usuario = %s"
-        query1="""select se.servidoresnombre, servidoresdescripcion from servidores as se inner join usuarios_servidores as us on se.servidoresid = us.usuarios_servidoresservidor
+        query1="""select servidoresid, se.servidoresnombre, servidoresdescripcion from servidores as se inner join usuarios_servidores as us on se.servidoresid = us.usuarios_servidoresservidor
 where us.usuarios_servidoresusuario = %s"""
         results = DatabaseConnection.fetch_all(query1, (user_id,))
 
