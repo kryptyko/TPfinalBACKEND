@@ -11,7 +11,7 @@ class ChatController:
             if user is None:
                 return {'success': False, 'message': 'Usuario no encontrado'}
             
-            contrasenia = user.get('password')  # Utilizamos el método get() para obtener la contraseña
+            contrasenia = user.get('usuariospassword')  # Utilizamos el método get() para obtener la contraseña
             
             if contrasenia is None:  # Verificamos si la contraseña no está definida en el diccionario
                 return {'success': False, 'message': 'Contraseña no definida'}

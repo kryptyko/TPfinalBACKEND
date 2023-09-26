@@ -3,7 +3,7 @@ from APP.database import DatabaseConnection
 class Chat:
     @staticmethod
     def find_user(username):
-        query = "SELECT * FROM usuarios WHERE user = %s"
+        query = "SELECT * FROM usuarios WHERE usuariosusername = %s"
         #query0= "SELECT * FROM usuarios WHERE user ="
         #query1=query0+"'"+username+"'"
         result = DatabaseConnection.fetch_one(query, (username,))
@@ -12,13 +12,13 @@ class Chat:
             return None
 
         user = {
-            'id': result[0],
-            'user': result[6],
-            'nombre': result[1],
-            'apellido': result[2],
-            'email': result[3],
-            'password': result[4],
-            'telefono': result[5]
+            'usuariosid': result[0],
+            'usuariosusername': result[5],
+            'usuariosnombre': result[1],
+            'usuariosapellido': result[2],
+            'usuariosemail': result[3],
+            'usuariospassword': result[6],
+            'usuariostelefono': result[4]
         }
 
         return user
@@ -32,7 +32,7 @@ class Chat:
             #if existing_user is not None:
              #   return {'success': False, 'message': 'El usuario ya existe'}
             
-            query = """INSERT INTO usuarios (nombre, apellido, email, password, telefono, user) VALUES (%s, %s, %s, %s, %s, %s)"""
+            query = """INSERT INTO usuarios (usuariosnombre, usuariosapellido, usuariosemail, usuariospassword, usuariostelefono, usuariosusername) VALUES (%s, %s, %s, %s, %s, %s)"""
             values = (nombre, apellido, email, password, telefono, username)
             user_id = DatabaseConnection.execute_query(query, values)
             
