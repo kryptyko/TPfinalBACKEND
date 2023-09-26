@@ -23,6 +23,25 @@ class Chat:
 
         return user
     
+    @staticmethod
+    def get_user_servers(user_id):
+        query = "SELECT * FROM usuarios_servidores WHERE usuario = %s"
+        query1="""select se.servidoresnombre, servidoresdescripcion from servidores as se inner join usuarios_servidores as us on se.servidoresid = us.usuarios_servidoresservidor
+where us.usuarios_servidoresusuario = %s"""
+        results = DatabaseConnection.fetch_all(query1, (user_id,))
+
+        servers = []
+        for result in results:
+            server = {
+                'id': result[0],
+                'servidor': result[1],
+                'descripcion': result[2],
+                
+            }
+            servers.append(server)
+
+        return servers
+    
 
     @staticmethod
     def create_user(username, password, nombre, apellido, email, telefono):

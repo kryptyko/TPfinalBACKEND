@@ -21,7 +21,10 @@ class ChatController:
             if contrasenia != password:
                 return {'success': False, 'message': 'Contraseña incorrecta'}
             else:
-                return {'success': True, 'message': 'Inicio de sesión exitoso'}
+                
+                servers= Chat.get_user_servers(user.get('usuariosid'))
+                
+                return {'success': True, 'message': 'Inicio de sesión exitoso', 'servers': servers}
         
         except Exception as e:
             return {'success': False, 'message': 'Error durante el inicio de sesión: {}'.format(str(e))}
